@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tebak Angka Ajaib!</title>
+  <link rel="stylesheet" href="style-html.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Tebak Angka Ajaib! 🎯</h1>
+    <p class="info">Aku menyimpan angka antara 1 sampai 10. Bisa tebak?</p>
+
+    <input type="number" id="inputAngka" placeholder="Tebak angkanya..." min="1" max="10">
+    <button onclick="cekTebakan()">Tebak!</button>
+
+    <p id="hasil"></p>
+    <button class="reset" onclick="mulaiUlang()">Main Lagi 🔁</button>
+  </div>
+
+  <script>
+    let angkaAjaib = Math.floor(Math.random() * 10) + 1;
+
+    function cekTebakan() {
+      const tebakan = parseInt(document.getElementById("inputAngka").value);
+      const hasil = document.getElementById("hasil");
+
+      if (tebakan === angkaAjaib) {
+        hasil.textContent = "🎉 KAMU BENAR! ANGKANYA " + angkaAjaib + "!";
+        hasil.style.color = "#00ff88";
+        document.body.classList.add("menang");
+      } else if (tebakan > angkaAjaib) {
+        hasil.textContent = "Kebesaran! Coba lebih kecil 🤏";
+        hasil.style.color = "#ffc107";
+      } else {
+        hasil.textContent = "Kekecilan! Coba lebih besar 📈";
+        hasil.style.color = "#ff4444";
+      }
+    }
+
+    function mulaiUlang() {
+      angkaAjaib = Math.floor(Math.random() * 10) + 1;
+      document.getElementById("hasil").textContent = "";
+      document.getElementById("inputAngka").value = "";
+      document.body.classList.remove("menang");
+    }
+  </script>
+</body>
+</html>
